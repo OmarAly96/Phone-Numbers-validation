@@ -10,8 +10,8 @@ import { PhoneNumberService } from 'src/app/services/phone-number.service';
 })
 export class PhoneNumbersListComponent implements OnInit,OnDestroy {
 
-  private country: string = ""
-  private state: string = ""
+  country: string = ""
+  state: string = ""
   private page: number = 0
   private phoneNumbersSubscription: Subscription = new Subscription;
   phoneNumbers: PhoneNumber[] = [];
@@ -52,14 +52,14 @@ export class PhoneNumbersListComponent implements OnInit,OnDestroy {
   }
   onSelectCountry(data: any){
     this.page=0;
-    this.country = data.target.value
+    this.country = data.value
     this.phoneNumbersSubscription.unsubscribe()
     this.listPhoneNumbers();
   }
 
   onSelectState(data: any){
     this.page=0;
-    this.state = data.target.value
+    this.state = data.value
     this.phoneNumbersSubscription.unsubscribe()
     this.listPhoneNumbers();
   }

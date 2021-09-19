@@ -7,7 +7,7 @@ import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 import { PhoneNumbersListComponent } from './components/phone-numbers-list/phone-numbers-list.component';
 import { MatButtonModule } from '@angular/material/button';
-
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -19,6 +19,7 @@ import { MatButtonModule } from '@angular/material/button';
     BrowserAnimationsModule,
     MatTableModule,
     MatButtonModule,
+    MatSelectModule,
     HttpClientModule
   ],
   providers: [],

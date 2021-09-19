@@ -33,22 +33,25 @@
 </div>
 <br><br>
 <div>
-    <label for="countries">Select Countries:</label>
+    <mat-form-field appearance="fill">
+        <mat-label>Select Country</mat-label>
+        <mat-select [(value)]="country" (selectionChange)="onSelectCountry($event)">
+            <mat-option value="">All</mat-option>
+                <mat-option value="Cameroon">Cameroon</mat-option>
+                <mat-option value="Ethiopia">Ethiopia</mat-option>
+                <mat-option value="Morocco">Morocco</mat-option>
+                <mat-option value="Mozambique">Mozambique</mat-option>
+                <mat-option value="Uganda">Uganda</mat-option>
+        </mat-select>
+    </mat-form-field>
 
-    <select name="Country" id="countries" (change)="onSelectCountry($event)">
-        <option value="">All</option>
-        <option value="Cameroon">Cameroon</option>
-        <option value="Ethiopia">Ethiopia</option>
-        <option value="Morocco">Morocco</option>
-        <option value="Mozambique">Mozambique</option>
-        <option value="Uganda">Uganda</option>
-    </select>
+    <mat-form-field appearance="fill">
+        <mat-label>Select State</mat-label>
+        <mat-select [(value)]="state" (selectionChange)="onSelectCountry($event)">
+            <mat-option value="">All</mat-option>
+                <mat-option value="1">OK</mat-option>
+                <mat-option value="0">NOK</mat-option>
+        </mat-select>
+    </mat-form-field>
 
-    <label for="state">Select State:</label>
-
-    <select name="State" id="state" (change)="onSelectState($event)">
-        <option value="">All</option>
-        <option value="1">OK</option>
-        <option value="0">NOK</option>
-    </select>
 </div>

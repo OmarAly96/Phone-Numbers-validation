@@ -16,10 +16,12 @@ type Service struct {
 }
 
 func LoadService(repository Repository, logger *zerolog.Logger) *Service {
-	return &Service{
+	s := &Service{
 		Repository: repository,
 		Logger:     logger,
 	}
+	s.mirgratePhoneNumbers()
+	return s
 }
 
 func (s *Service) FindAllPhoneNumbers(offset, limit, country, state string) ([]entity.PhoneNumber, error) {

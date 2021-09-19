@@ -12,6 +12,7 @@ export class PhoneNumbersListComponent implements OnInit,OnDestroy {
 
   country: string = ""
   state: string = ""
+  private limit: number = 10
   private page: number = 0
   private phoneNumbersSubscription: Subscription = new Subscription;
   phoneNumbers: PhoneNumber[] = [];
@@ -45,7 +46,7 @@ export class PhoneNumbersListComponent implements OnInit,OnDestroy {
     }
   }
   onNext(){
-    if (this.phoneNumbers.length == 10) {
+    if (this.phoneNumbers.length == this.limit) {
       this.page++;
       this.phoneNumbersSubscription.unsubscribe()
       this.listPhoneNumbers();

@@ -52,9 +52,7 @@ func (s *Service) CreatePhoneNumber(n model.PhoneNumber) error {
 			Code:    code,
 			Number:  number,
 		}
-
 		phoneNumber.ValidateState(c.Exp)
-		fmt.Println(phoneNumber)
 		if err := s.Repository.Create(phoneNumber); err != nil {
 			s.Logger.Error().Msgf("can't create phone number: %v", number)
 			return fmt.Errorf("can't create phone number: %s", err)

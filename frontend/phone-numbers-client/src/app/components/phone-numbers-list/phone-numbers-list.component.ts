@@ -33,7 +33,6 @@ export class PhoneNumbersListComponent implements OnInit,OnDestroy {
       data => {
         this.phoneNumbers = data;
         this.phoneNumbers.map(phoneNumber => phoneNumber.state? phoneNumber.state="OK":phoneNumber.state="NOK")
-        console.log(this.phoneNumbers)
       }
     )
   }

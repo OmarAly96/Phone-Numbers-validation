@@ -19,7 +19,6 @@ export class PhoneNumberService {
   getPhoneNumbersList(page: number,country: string,state: string): Observable<PhoneNumber[]> {
 
     const offset = page * LIMIT
-    console.log(this.baseUrl+"&offset="+offset+"&country="+country+"&state="+state)
     return this.httpClient.get<PhoneNumber[]>(this.baseUrl+"&offset="+offset+"&country="+country+"&state="+state);
   }
 

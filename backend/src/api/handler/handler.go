@@ -18,9 +18,26 @@ func NewGinHandler(useCase phoneNumber.UseCase) (r *gin.Engine) {
 		useCase,
 	}
 	r = gin.Default()
+	r.Use(CORSMiddleware())
 	r.GET("/phone-numbers", h.GetPhoneNumbers)
 	r.POST("/phone-numbers", h.CreateNumber)
 	return r
+}
+
+func CORSMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
+		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
+		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
+		c.Writer.Header().Set("Access-Control-Allow-Methods", "POST, GET")
+
+		if c.Request.Method == "OPTIONS" {
+			c.AbortWithStatus(204)
+			return
+		}
+
+		c.Next()
+	}
 }
 
 func (h *GinHandler) GetPhoneNumbers(c *gin.Context) {

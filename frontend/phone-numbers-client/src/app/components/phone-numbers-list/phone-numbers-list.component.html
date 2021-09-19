@@ -1,0 +1,54 @@
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="phoneNumbers">
+
+        <ng-container matColumnDef="country">
+            <th mat-header-cell *matHeaderCellDef> Country </th>
+            <td mat-cell *matCellDef="let element"> {{element.country}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="state">
+            <th mat-header-cell *matHeaderCellDef> State </th>
+            <td mat-cell *matCellDef="let element"> {{element.state}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="code">
+            <th mat-header-cell *matHeaderCellDef> Code </th>
+            <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="number">
+            <th mat-header-cell *matHeaderCellDef> Number </th>
+            <td mat-cell *matCellDef="let element"> {{element.number}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+<br><br>
+
+<div>
+    <button mat-stroked-button color="primary" (click)="onPrev()">prev</button>
+    <button mat-stroked-button color="primary" (click)="onNext()">next</button>
+</div>
+<br><br>
+<div>
+    <label for="countries">Select Countries:</label>
+
+    <select name="Country" id="countries" (change)="onSelectCountry($event)">
+        <option value="">All</option>
+        <option value="Cameroon">Cameroon</option>
+        <option value="Ethiopia">Ethiopia</option>
+        <option value="Morocco">Morocco</option>
+        <option value="Mozambique">Mozambique</option>
+        <option value="Uganda">Uganda</option>
+    </select>
+
+    <label for="state">Select State:</label>
+
+    <select name="State" id="state" (change)="onSelectState($event)">
+        <option value="">All</option>
+        <option value="1">OK</option>
+        <option value="0">NOK</option>
+    </select>
+</div>

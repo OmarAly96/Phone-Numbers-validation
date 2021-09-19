@@ -57,11 +57,9 @@ func (s *Service) CreatePhoneNumber(n model.PhoneNumber) error {
 			s.Logger.Error().Msgf("can't create phone number: %v", number)
 			return fmt.Errorf("can't create phone number: %s", err)
 		}
-
 		return nil
-
 	}
-	return fmt.Errorf("invalid input")
+	return entity.ErrInvalidInput
 }
 
 func (s *Service) mirgratePhoneNumbers() error {

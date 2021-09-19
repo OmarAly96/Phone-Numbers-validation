@@ -31,6 +31,7 @@ export class PhoneNumbersListComponent implements OnInit,OnDestroy {
     this.phoneNumbersSubscription = this.phoneNumberService.getPhoneNumbersList(this.page,this.country,this.state).subscribe(
       data => {
         this.phoneNumbers = data;
+        this.phoneNumbers.map(phoneNumber => phoneNumber.state? phoneNumber.state="OK":phoneNumber.state="NOK")
         console.log(this.phoneNumbers)
       }
     )

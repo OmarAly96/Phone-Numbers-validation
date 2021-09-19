@@ -1,5 +1,3 @@
-import { state } from '@angular/animations';
-import { NumberSymbol } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -14,7 +12,7 @@ const LIMIT = 10
 export class PhoneNumberService {
 
 
-  private baseUrl = "http://localhost:8080/phone-numbers?limit="+LIMIT;
+  private baseUrl = "http://localhost:8080/api/phone-numbers?limit="+LIMIT;
 
   constructor(private httpClient: HttpClient) { }
 

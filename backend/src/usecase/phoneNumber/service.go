@@ -49,7 +49,7 @@ func (s *Service) CreatePhoneNumber(n model.PhoneNumber) error {
 
 		phoneNumber := &entity.PhoneNumber{
 			Country: c.Country,
-			Code:    code,
+			Code:    "+" + code,
 			Number:  number,
 		}
 		phoneNumber.ValidateState(c.Exp)

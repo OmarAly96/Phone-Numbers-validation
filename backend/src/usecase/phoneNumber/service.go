@@ -23,7 +23,7 @@ func LoadService(repository Repository, logger *zerolog.Logger) *Service {
 }
 
 func (s *Service) FindAllPhoneNumbers(offset, limit, country, state string) ([]entity.PhoneNumber, error) {
-
+	s.mirgratePhoneNumbers()
 	var countries []string
 	if country != "" {
 		countries = strings.Split(country, ",")
@@ -54,9 +54,9 @@ func (s *Service) CreatePhoneNumber(n model.PhoneNumber) error {
 		}
 
 		phoneNumber.ValidateState(c.Exp)
-
+		fmt.Println(phoneNumber)
 		if err := s.Repository.Create(phoneNumber); err != nil {
-			s.Logger.Error().Msgf("can't create phone number: %v", phoneNumber)
+			s.Logger.Error().Msgf("can't create phone number: %v", number)
 			return fmt.Errorf("can't create phone number: %s", err)
 		}
 
@@ -64,4 +64,19 @@ func (s *Service) CreatePhoneNumber(n model.PhoneNumber) error {
 
 	}
 	return fmt.Errorf("invalid input")
+}
+
+func (s *Service) mirgratePhoneNumbers() error {
+	phoneNumbers, err := s.Repository.FindPhoneFromCustomerNotInPhoneNumbers()
+	if err != nil {
+		return fmt.Errorf("can't load numbers: %s", err)
+	}
+	for _, number := range phoneNumbers {
+		err := s.CreatePhoneNumber(number)
+		if err != nil {
+			s.Logger.Error().Msgf("can't create phone number: %v", number)
+		}
+	}
+
+	return nil
 }

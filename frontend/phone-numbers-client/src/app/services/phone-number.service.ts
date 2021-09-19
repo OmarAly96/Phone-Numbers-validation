@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PhoneNumber } from '../model/phone-number';
 
-const LIMIT = 2
+const LIMIT = 10
 
 @Injectable({
   providedIn: 'root'

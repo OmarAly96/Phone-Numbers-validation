@@ -44,7 +44,7 @@ export class PhoneNumbersListComponent implements OnInit,OnDestroy {
     }
   }
   onNext(){
-    if (this.phoneNumbers.length > 0) {
+    if (this.phoneNumbers.length == 10) {
       this.page++;
       this.phoneNumbersSubscription.unsubscribe()
       this.listPhoneNumbers();

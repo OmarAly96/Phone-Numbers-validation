@@ -10,6 +10,8 @@ To run the frontend
 
   cd frontend/phone-numbers-client
   
+  npm install
+  
   ng serve
   
 Main API: 

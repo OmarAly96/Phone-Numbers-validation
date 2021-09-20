@@ -17,6 +17,7 @@ func NewGinHandler(useCase phoneNumber.UseCase) (r *gin.Engine) {
 	h := &GinHandler{
 		useCase,
 	}
+	h.PhoneNumberUseCase.MirgratePhoneNumbers()
 	r = gin.Default()
 	r.Use(CORSMiddleware())
 	r.GET("/api/phone-numbers", h.GetPhoneNumbers)

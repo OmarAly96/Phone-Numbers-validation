@@ -8,4 +8,5 @@ import (
 type UseCase interface {
 	CreatePhoneNumber(model.PhoneNumber) error
 	FindAllPhoneNumbers(offset, limit, country, state string) ([]entity.PhoneNumber, error)
+	MirgratePhoneNumbers() error
 }

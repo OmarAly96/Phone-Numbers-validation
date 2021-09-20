@@ -16,16 +16,14 @@ type Service struct {
 }
 
 func LoadService(repository Repository, logger *zerolog.Logger) *Service {
-	s := &Service{
+	return &Service{
 		Repository: repository,
 		Logger:     logger,
 	}
-	s.mirgratePhoneNumbers()
-	return s
 }
 
 func (s *Service) FindAllPhoneNumbers(offset, limit, country, state string) ([]entity.PhoneNumber, error) {
-	s.mirgratePhoneNumbers()
+	s.MirgratePhoneNumbers()
 	var countries []string
 	if country != "" {
 		countries = strings.Split(country, ",")
@@ -64,7 +62,7 @@ func (s *Service) CreatePhoneNumber(n model.PhoneNumber) error {
 	return entity.ErrInvalidInput
 }
 
-func (s *Service) mirgratePhoneNumbers() error {
+func (s *Service) MirgratePhoneNumbers() error {
 	phoneNumbers, err := s.Repository.FindPhoneFromCustomerNotInPhoneNumbers()
 	if err != nil {
 		return fmt.Errorf("can't load numbers: %s", err)

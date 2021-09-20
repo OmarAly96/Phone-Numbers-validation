@@ -10,6 +10,6 @@ require (
 	github.com/lib/pq v1.10.0 // indirect
 	github.com/mattn/go-sqlite3 v1.14.8
 	github.com/rs/zerolog v1.25.0
-	github.com/stretchr/testify v1.5.1 // indirect
+	github.com/stretchr/testify v1.5.1
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )

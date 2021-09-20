@@ -72,12 +72,12 @@ func (s *SqlLiteDB) FindPhoneFromCustomerNotInPhoneNumbers() ([]model.PhoneNumbe
 
 func (s *SqlLiteDB) Create(p *entity.PhoneNumber) error {
 	tx := s.db.MustBegin()
-	tx.MustExec("INSERT INTO phone_numbers (country, state, code, number) VALUES ($1, $2, $3, $4)", p.Country, p.State, p.Code, p.Number)
-	// err := tx.MustExec("INSERT INTO phone_numbers (country, state, code, number) VALUES ($1, $2, $3, $4)", p.Country, p.State, p.Code, p.Number)
-	// if err != nil {
-	// 	tx.Rollback()
-	// 	return fmt.Errorf("can't insert phone number in database: %s", err)
-	// }
+	sqlResult := tx.MustExec("INSERT INTO phone_numbers (country, state, code, number) VALUES ($1, $2, $3, $4)", p.Country, p.State, p.Code, p.Number)
+	RowsAffected, err := sqlResult.RowsAffected()
+	if RowsAffected == 0 || err != nil {
+		tx.Rollback()
+		return fmt.Errorf("can't insert phone number in database: %s", err)
+	}
 	tx.Commit()
 	return nil
 }

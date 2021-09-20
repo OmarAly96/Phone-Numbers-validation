@@ -23,7 +23,6 @@ func LoadService(repository Repository, logger *zerolog.Logger) *Service {
 }
 
 func (s *Service) FindAllPhoneNumbers(offset, limit, country, state string) ([]entity.PhoneNumber, error) {
-	s.MirgratePhoneNumbers()
 	var countries []string
 	if country != "" {
 		countries = strings.Split(country, ",")
